@@ -1,66 +1,169 @@
 <!doctype html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-		/>
-		<title>Scramjet</title>
-
-		<link rel="shortcut icon" content="favicon.webp" />
-	
-		<script src="/scram/scramjet.all.js"></script>
-		<script src="/baremux/index.js"></script>
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#080b14" />
+		<title>Classroom</title>
+		<link rel="icon" href="favicon.ico" />
 		<link rel="stylesheet" href="index.css" />
+		<!-- Scramjet v2 runtime, controller, and matching Wisp transport. -->
+		<script src="/scramjet/scramjet_bundled.js"></script>
+		<script src="/controller/controller.api.js"></script>
+		<script src="/epoxy/index.js"></script>
+
+		<!-- Load your local logic sequentially via defer -->
+		<script src="config.js" defer></script>
 		<script src="register-sw.js" defer></script>
 		<script src="search.js" defer></script>
 		<script src="index.js" defer></script>
 	</head>
-
 	<body>
-		<div title="Scramjet Logo" class="flex-center logo-wrapper header-center">
-			<img class="logo" src="sj.png" alt="Scramjet" />
-			<h1>Scramjet | MW</h1>
-		</div>
-		<div class="flex-center desc left-margin">
-			<p>
-				Scramjet is an experimental interception based web proxy designed to
-				evade internet censorship, bypass arbitrary web browser restrictions and
-				innovate web proxy technologies.
-			</p>
+		<div class="browser-shell">
+			<header class="browser-chrome">
+				<div class="tab-strip">
+					<div
+						id="tab-list"
+						class="tab-list"
+						role="tablist"
+						aria-label="Browser tabs"
+					></div>
+					<button
+						id="new-tab"
+						class="icon-button new-tab"
+						type="button"
+						aria-label="New tab"
+						title="New tab"
+					>
+						+
+					</button>
+				</div>
+
+				<div class="toolbar">
+					<div class="navigation-controls" aria-label="Navigation controls">
+						<button
+							id="back-button"
+							class="icon-button"
+							type="button"
+							aria-label="Back"
+							title="Back"
+							disabled
+						>
+							&#x2190;
+						</button>
+						<button
+							id="forward-button"
+							class="icon-button"
+							type="button"
+							aria-label="Forward"
+							title="Forward"
+							disabled
+						>
+							&#x2192;
+						</button>
+						<button
+							id="reload-button"
+							class="icon-button"
+							type="button"
+							aria-label="Reload"
+							title="Reload"
+						>
+							&#x21bb;
+						</button>
+					</div>
+
+					<form id="sj-form" class="address-form">
+						<input
+							id="sj-search-engine"
+							value="https://www.bing.com/search?q=%s"
+							type="hidden"
+						/>
+						<label class="sr-only" for="sj-address">Address or search</label>
+						<input
+							id="sj-address"
+							type="text"
+							autocomplete="off"
+							spellcheck="false"
+							placeholder="Search or enter an address"
+						/>
+					</form>
+
+					<div class="quick-links-control">
+						<button
+							id="quick-links-toggle"
+							class="command-button"
+							type="button"
+							aria-expanded="false"
+							aria-controls="quick-links-menu"
+						>
+							Quick links <span aria-hidden="true">&#x25be;</span>
+						</button>
+						<div id="quick-links-menu" class="quick-links-menu" hidden></div>
+					</div>
+
+					<button
+						id="settings-button"
+						class="icon-button"
+						type="button"
+						aria-label="Settings"
+						title="Settings"
+					>
+						&#x2699;
+					</button>
+				</div>
+			</header>
+
+			<main id="browser-content" class="browser-content">
+				<section id="home-view" class="home-view" aria-label="New tab">
+					<img class="home-logo" src="sj.png" alt="Scramjet" />
+					<h1>Classroom</h1>
+					<p id="browser-status" class="browser-status" role="status"></p>
+				</section>
+			</main>
 		</div>
 
-		<form id="sj-form" class="flex-center">
-			<input
-				id="sj-search-engine"
-				value="https://www.google.com/search?q=%s"
-				type="hidden"
-			/>
-			<input id="sj-address" type="text" placeholder="Search the web freely" />
-		</form>
-		<div class="desc left-margin">
-			<p id="sj-error"></p>
-			<pre id="sj-error-code"></pre>
+		<div
+			id="restriction-overlay"
+			class="restriction-overlay"
+			hidden
+			aria-hidden="true"
+		>
+			<div class="restriction-content">
+				<p>Focus screen</p>
+				<button id="blocked-dismiss" class="command-button" type="button">
+					Open browser
+				</button>
+			</div>
 		</div>
-		<footer>
-			<div>
-				<a
-					title="The Mercury Workshop GitHub organization"
-					href="https://github.com/MercuryWorkshop"
-					>Mercury Workshop</a
+
+		<dialog
+			id="settings-dialog"
+			class="settings-dialog"
+			aria-labelledby="settings-title"
+		>
+			<div class="settings-heading">
+				<h2 id="settings-title">Settings</h2>
+				<button
+					id="settings-close"
+					class="icon-button"
+					type="button"
+					aria-label="Close settings"
+					title="Close settings"
 				>
-				<a
-					title="The example demo app for Scramjet"
-					href="https://github.com/MercuryWorkshop/Scramjet-Demo"
-					>GitHub</a
-				>
-				<a title="License information" href="credits.html">Credits</a>
+					x
+				</button>
 			</div>
-			<div>
-				<span>Scramjet &copy; MW 2025</span>
+			<div class="setting-row">
+				<div>
+					<label for="konami-setting">Enable keyboard unlock shortcut</label>
+				</div>
+				<input
+					id="konami-setting"
+					class="switch"
+					type="checkbox"
+					role="switch"
+				/>
 			</div>
-		</footer>
+		</dialog>
 	</body>
 </html>

@@ -1,3 +1,11 @@
 node_modules
 .DS_Store
 scramjet/
+public/baremux/
+public/libcurl/
+public/scram/
+public/scramjet/
+public/controller/
+public/epoxy/
+.vercel
+.env*

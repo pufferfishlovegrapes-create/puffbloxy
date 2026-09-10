@@ -8,7 +8,9 @@
 		"node": ">=16.0.0"
 	},
 	"scripts": {
+		"build": "node --check src/index.js && node scripts/build-static.mjs",
 		"start": "node src/index.js",
+		"test": "node --test",
 		"format": "prettier --write .",
 		"lint": "eslint ./src/",
 		"lint:fix": "eslint ./src/ --fix"
@@ -19,12 +21,13 @@
 	"author": "Mercury Workshop",
 	"license": "GNU AFFERO",
 	"dependencies": {
-		"fastify": "^5.7.4",
 		"@fastify/static": "^9.0.0",
-		"@mercuryworkshop/bare-mux": "^2.1.9",
-		"@mercuryworkshop/libcurl-transport": "^1.5.2",
-		"@mercuryworkshop/scramjet": "https://github.com/MercuryWorkshop/scramjet/releases/download/v1.1.0/mercuryworkshop-scramjet-1.1.0.tgz",
-		"@mercuryworkshop/wisp-js": "^0.4.1",
+		"@mercuryworkshop/epoxy-transport": "3.0.1",
+		"@mercuryworkshop/proxy-transports": "1.0.2",
+		"@mercuryworkshop/scramjet": "2.0.67-alpha.2",
+		"@mercuryworkshop/scramjet-controller": "0.0.14",
+		"@vercel/analytics": "^2.0.1",
+		"fastify": "^5.7.4",
 		"ws": "^8.18.3"
 	},
 	"devDependencies": {

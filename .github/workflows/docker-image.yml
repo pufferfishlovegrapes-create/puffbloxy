@@ -27,4 +27,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERUSERNAME }}/puffproxy:latest
+          tags: ${{ secrets.DOCKERUSERNAME }}/puffblox:latest

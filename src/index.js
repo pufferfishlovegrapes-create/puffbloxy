@@ -11,11 +11,11 @@ import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 
 const publicPath = fileURLToPath(new URL("../public/", import.meta.url));
 
-// PuffProxy configuration -------------------------------------------------
+// PuffBlox configuration -------------------------------------------------
 
 const DEFAULT_DESTINATION = "https://www.easyfun.gg/cloud-games/roblox.html";
 
-// Hostnames the operator permits PuffProxy to auto-load. Any value supplied
+// Hostnames the operator permits PuffBlox to auto-load. Any value supplied
 // via DESTINATION_URL whose hostname is not in this list is rejected at
 // startup, so an operator (or attacker who controls the env) cannot point the
 // proxy at an arbitrary origin. Add more hostnames here to allow them.
@@ -101,7 +101,7 @@ fastify.register(fastifyStatic, {
 // Serve validated runtime config to the frontend. Computed once from the
 // allowlist-checked destination so the browser never receives an arbitrary URL.
 fastify.get("/config.js", async (_req, reply) => {
-	const body = `window.__PUFFPROXY__ = ${JSON.stringify({
+	const body = `window.__PUFFBLOX__ = ${JSON.stringify({
 		destination: destinationUrl,
 	})};\n`;
 	return reply
@@ -119,7 +119,7 @@ fastify.server.on("listening", () => {
 
 	// by default we are listening on 0.0.0.0 (every interface)
 	// we just need to list a few
-	console.log("PuffProxy listening on:");
+	console.log("PuffBlox listening on:");
 	console.log(`\thttp://localhost:${address.port}`);
 	console.log(`\thttp://${hostname()}:${address.port}`);
 	console.log(

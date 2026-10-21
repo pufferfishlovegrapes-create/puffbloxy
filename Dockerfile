@@ -8,8 +8,8 @@ ENV DESTINATION_URL=https://www.easyfun.gg/cloud-games/roblox.html
 ARG NPM_BUILD="npm install --omit=dev"
 EXPOSE 8080/tcp
 
-LABEL maintainer="PuffProxy"
-LABEL summary="PuffProxy Image"
+LABEL maintainer="PuffBlox"
+LABEL summary="PuffBlox Image"
 LABEL description="Minimal Scramjet-powered proxy that auto-loads a configured destination fullscreen"
 
 WORKDIR /app

@@ -1,7 +1,7 @@
 {
-	"name": "puffproxy",
+	"name": "puffblox",
 	"version": "1.0.0",
-	"description": "PuffProxy — a minimal Scramjet-powered proxy that auto-loads a configured destination fullscreen.",
+	"description": "PuffBlox — a minimal Scramjet-powered proxy that auto-loads a configured destination fullscreen.",
 	"type": "module",
 	"engines": {
 		"npm": ">=7.0.0",
@@ -16,9 +16,9 @@
 	"keywords": [
 		"proxy",
 		"scramjet",
-		"puffproxy"
+		"puffblox"
 	],
-	"author": "PuffProxy",
+	"author": "PuffBlox",
 	"license": "GNU AFFERO",
 	"dependencies": {
 		"fastify": "^5.7.4",

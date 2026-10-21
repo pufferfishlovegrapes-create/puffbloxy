@@ -1,8 +1,8 @@
-<h1 align="center">PuffProxy</h1>
+<h1 align="center">PuffBlox</h1>
 
-PuffProxy is a minimal, single-destination proxy built on top of [Scramjet](https://github.com/MercuryWorkshop/scramjet) and the [Wisp](https://www.npmjs.com/package/@mercuryworkshop/wisp-js) WebSocket transport.
+PuffBlox is a minimal, single-destination proxy built on top of [Scramjet](https://github.com/MercuryWorkshop/scramjet) and the [Wisp](https://www.npmjs.com/package/@mercuryworkshop/wisp-js) WebSocket transport.
 
-When a visitor opens the site, PuffProxy automatically boots the Scramjet service worker and loads a **configurable destination URL** as a fullscreen experience — no search bar, no URL input, no tabs. The destination defaults to the EasyFun Roblox cloud-games page and is validated against an explicit hostname allowlist.
+When a visitor opens the site, PuffBlox automatically boots the Scramjet service worker and loads a **configurable destination URL** as a fullscreen experience — no search bar, no URL input, no tabs. The destination defaults to the EasyFun Roblox cloud-games page and is validated against an explicit hostname allowlist.
 
 > The Scramjet interception proxy, the Wisp transport, the service worker, and the Node.js backend are all preserved from the original Scramjet-Demo. Only the user-facing shell was simplified into a single-destination launcher.
 
@@ -22,7 +22,7 @@ npm start
 
 Then open `http://localhost:8080` in a browser. The configured destination loads automatically and fills the viewport.
 
-> **HTTPS / service workers:** Browsers only allow service workers on `https://` or on `localhost` / `127.0.0.1`. For any other hostname you must serve PuffProxy over HTTPS (e.g. behind nginx + Let's Encrypt, or a reverse proxy).
+> **HTTPS / service workers:** Browsers only allow service workers on `https://` or on `localhost` / `127.0.0.1`. For any other hostname you must serve PuffBlox over HTTPS (e.g. behind nginx + Let's Encrypt, or a reverse proxy).
 
 ## Configuration
 
@@ -44,7 +44,7 @@ const ALLOWED_HOSTNAMES = [
 ];
 ```
 
-To allow a different destination, add its hostname to `ALLOWED_HOSTNAMES` **and** set `DESTINATION_URL`. If `DESTINATION_URL` points at a hostname not in the list, the server exits with an error rather than silently proxying an arbitrary origin. This is intentional: PuffProxy is a single-destination launcher, not a general-purpose open proxy.
+To allow a different destination, add its hostname to `ALLOWED_HOSTNAMES` **and** set `DESTINATION_URL`. If `DESTINATION_URL` points at a hostname not in the list, the server exits with an error rather than silently proxying an arbitrary origin. This is intentional: PuffBlox is a single-destination launcher, not a general-purpose open proxy.
 
 ## How it works
 
@@ -69,8 +69,8 @@ The frontend computes this automatically from the current `location`, so no manu
 ### Docker
 
 ```bash
-docker build -t puffproxy:latest .
-docker run -p 8080:8080 -e DESTINATION_URL=https://www.easyfun.gg/cloud-games/roblox.html puffproxy:latest
+docker build -t puffblox:latest .
+docker run -p 8080:8080 -e DESTINATION_URL=https://www.easyfun.gg/cloud-games/roblox.html puffblox:latest
 ```
 
 Or with docker-compose:
@@ -86,7 +86,7 @@ npm install --omit=dev
 DESTINATION_URL=https://www.easyfun.gg/cloud-games/roblox.html PORT=8080 npm start
 ```
 
-For production, put PuffProxy behind an HTTPS reverse proxy (nginx, Caddy, etc.) that terminates TLS and forwards to `localhost:8080`, and upgrades `/wisp/` WebSocket connections.
+For production, put PuffBlox behind an HTTPS reverse proxy (nginx, Caddy, etc.) that terminates TLS and forwards to `localhost:8080`, and upgrades `/wisp/` WebSocket connections.
 
 ## Project layout
 

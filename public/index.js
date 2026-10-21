@@ -32,7 +32,7 @@ function buildWispUrl() {
 
 async function boot() {
 	const destination =
-		window.__PUFFPROXY__ && window.__PUFFPROXY__.destination;
+		window.__PUFFBLOX__ && window.__PUFFBLOX__.destination;
 
 	if (!destination) {
 		showError("Configuration failed to load. /config.js did not provide a destination.");

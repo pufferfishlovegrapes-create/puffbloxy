@@ -1,5 +1,5 @@
 {
-	"name": "PuffProxy",
+	"name": "PuffBlox",
 	"description": "Minimal Scramjet-powered proxy that auto-loads a configured destination fullscreen.",
-	"keywords": ["proxy", "scramjet", "puffproxy"]
+	"keywords": ["proxy", "scramjet", "puffblox"]
 }

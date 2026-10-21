@@ -1,4 +1,4 @@
-<h1 align="center">PuffBlox</h1>
+<h1 align="center">PuffBloxy</h1>
 
 PuffBlox is a minimal, single-destination proxy built on top of [Scramjet](https://github.com/MercuryWorkshop/scramjet) and the [Wisp](https://www.npmjs.com/package/@mercuryworkshop/wisp-js) WebSocket transport.
 

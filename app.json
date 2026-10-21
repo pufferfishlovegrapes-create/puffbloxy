@@ -1,7 +1,5 @@
 {
-	"name": "Scramjet Demo",
-	"description": "Scramjet Demo App",
-	"repository": "https://github.com/.../Scramjet-Demo",
-	"logo": "https://raw.githubusercontent.com/MercuryWorkshop/scramjet/main/assets/scramjet.png",
-	"keywords": ["scramjet"]
+	"name": "PuffProxy",
+	"description": "Minimal Scramjet-powered proxy that auto-loads a configured destination fullscreen.",
+	"keywords": ["proxy", "scramjet", "puffproxy"]
 }

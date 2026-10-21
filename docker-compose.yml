@@ -1,12 +1,14 @@
-# TODO: needs to be updated for sj
-# services:
-#   ultraviolet:
-#     image: diffusehyperion/ultraviolet
-#     container_name: scramjet
-#     restart: unless-stopped
-#     ports:
-#       - "8080:8080"
+services:
+  puffproxy:
+    image: puffproxy:latest
+    container_name: puffproxy
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - DESTINATION_URL=https://www.easyfun.gg/cloud-games/roblox.html
 
-# networks:
-#   default:
-#     name: ultraviolet
+networks:
+  default:
+    name: puffproxy
